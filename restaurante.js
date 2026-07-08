@@ -32,3 +32,71 @@ let menu = [
 
 // console.log(menu[1].precio);
 //console.log(menu[1].nombre);
+
+
+//RETO 1 MOSTRAR MENU COMPLETO 
+
+function mostrarMenu(menu) {
+    console.log("Menu Restaurante");
+    
+  for (let i = 0; i < menu.length; i++) {
+  console.log("Categoria:",menu[i].categoria +" ,Nombre:",menu[i].nombre + " — " +",precio:", menu[i].precio);
+}  
+}
+
+//mostrarMenu(menu)
+
+
+//RETO 2 SOLO LOS PLATOS DISPONIBLES
+function soloDisponibles(menu) {
+
+    let disponibles = []  //array vacio para crear nuevo con disponibles
+
+    for (let i = 0; i < menu.length; i++) {
+        
+        if (menu[i].disponible==true) {
+        disponibles.push(menu[i]);  //creacion array con platos disponibles
+        }
+    }
+    return disponibles;
+}
+let resultado = soloDisponibles(menu);
+//COMPARACION LISTADO COMPLETO VS DISPONIBLES
+//console.log("MENU COMPLETO");
+//mostrarMenu(menu);
+//console.log("MENU DISPONIBLES");
+//mostrarMenu(resultado);
+
+
+//RETO 3 TOMAR PEDIDO DE UNA MESA 
+
+
+function agregarPlato(pedido, plato) {
+    pedido.push(plato);
+}
+
+function quitarUltimoPlato(pedido) {
+    return pedido.pop();
+}
+
+
+
+//CREANDO PEDIDO SIMULACION
+let pedido = [];
+
+agregarPlato(pedido, menu[0]);
+agregarPlato(pedido, menu[2]);
+
+let eliminado = quitarUltimoPlato(pedido);
+
+console.log("Eliminado:", eliminado.nombre);
+console.log("Resumen de pedido ");
+
+//ingreso de platos al pedido
+//pedido.push(menu[0]);
+//pedido.push(menu[3]);
+//pedido.push(menu[5]);
+//Quitar ultimo plato
+//let eliminado = pedido.pop();
+
+mostrarMenu(pedido);
