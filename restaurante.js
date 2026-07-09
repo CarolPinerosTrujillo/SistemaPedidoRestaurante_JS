@@ -65,11 +65,13 @@ function soloDisponibles(menu) {
     }
     return disponibles;
 }
-let resultado = soloDisponibles(menu);
+let menuDisponible = soloDisponibles(menu);
 //COMPARACION LISTADO COMPLETO VS DISPONIBLES
 
 console.log("MENU DISPONIBLES");
-mostrarMenu(resultado);
+
+
+mostrarMenu(menuDisponible);
 
 
 //RETO 3 TOMAR PEDIDO DE UNA MESA 
@@ -115,7 +117,7 @@ mostrarMenu(pedido);
 
 console.log("RETO 4 - CALCULAR Y MOSTRAR LA CUENTA CON IVA ");
 console.log("================================== ");
-function precioConIva(curso) {
+function precioConIva(pedido) {
  let subtotal = 0; //ACUMULADOR
 
     for (let i = 0; i < pedido.length; i++) {
@@ -139,21 +141,21 @@ console.log("La cuenta con IVA es: " ,totalFinal);
 console.log("RETO 5 - MESERO TOMA PEDIDO POR TECLADO ");
 console.log("================================== ");
 
-let total = 0;
-let opcion = "";
 
 let pedidoNuevo=[];
+let cuentaTotal=0;
 
 //mostrar menu solo disponibles
 do {
-  console.log("\n--- MENÚ ---");
+  console.log("\n--- MENÚ DISPONIBLE PARA HOY ---");
 
-  for (let i = 0; i < menu.length; i++) {
-    console.log(i + ": " + menu[i].nombre + " - $" + menu[i].precio);  //USA MENU DISPONIBLE (resultado ANTES guardada dela funcion solo disponibles)
+  for (let i = 0; i < menuDisponible.length; i++) {
+    console.log(i + ": " + menuDisponible[i].nombre + " - $" + menuDisponible[i].precio);  //USA MENU DISPONIBLE (resultado ANTES guardada dela funcion solo disponibles)
   }
 
   let numero = prompt("Elige un plato (número) o escribe TERMINAR:");
-
+  numero=numero.toUpperCase()
+  
   // TERMINAR PEDIDO
   if (numero === "TERMINAR") {
     break;
@@ -162,10 +164,10 @@ do {
   numero = Number(numero);
 
   // VALIDAR  
-  if (numero >= 0 && numero < menu.length) {
-    pedidoNuevo.push(menu[numero]);
-    total = total + menu[numero].precio;
-    console.log("Agregado:", resultado[numero].nombre);
+  if (numero >= 0 && numero < menuDisponible.length) {
+    pedidoNuevo.push(menuDisponible[numero]);
+    cuentaTotal = cuentaTotal + menuDisponible[numero].precio;
+    console.log("Agregado:", menuDisponible[numero].nombre);
   } else {
     console.log(" Opción inválida, intenta de nuevo");
   }
@@ -177,7 +179,7 @@ do {
 console.log("\n--- PEDIDO FINAL ---");
 
 for (let i = 0; i < pedidoNuevo.length; i++) {
-  console.log(pedidoNuevo[i].nombre);
+  console.log(pedidoNuevo[i].nombre+" - $" + pedidoNuevo[i].precio);
 }
 
-console.log("TOTAL DEL PEDIDO: $" + precioConIva(total));
+console.log("TOTAL DEL PEDIDO CON IVA: $" + precioConIva(pedidoNuevo));
